@@ -40,14 +40,30 @@ const App = () => {
         setTreasure(data["data"]["treasure"])
 
         // Efficiently appending all arrays
-        setAllData([].concat.apply([], [foodData, nonFoodData, equipment, materials, monsters, treasure]))
+        const combinedData = [
+          ...data["data"]["creatures"]["food"],
+          ...data["data"]["creatures"]["non_food"],
+          ...data["data"]["equipment"],
+          ...data["data"]["materials"],
+          ...data["data"]["monsters"],
+          ...data["data"]["treasure"]
+        ];
+
+        setAllData(combinedData)
+
+        const orderedData = allData.map((item, index) => ({
+          ...item,
+          position: index
+        }))
+
+        setAllData(orderedData)
 
         setError(null)
       })
       .catch(error => {
         setError(error.message)
       })
-  }, [setAllData, equipment, foodData, materials, monsters, nonFoodData, treasure])
+  }, [setAllData, equipment, foodData, materials, monsters, nonFoodData, treasure, allData])
 
   // Creating Searching Function
   useEffect(() => {
@@ -78,26 +94,17 @@ const App = () => {
         />
       </div>
     <div className='tile-container'>
-      {searchResults.length === 0 ? (
-        allData.map(item => (
-        <Tile
+      {(searchResults.length === 0 ? allData : searchResults).map(item => (
+        <Tile 
+        id={item.id}
         key={item.id}
         title={item.name}
         image={item.image}
-      />
-    ))
-  ) : (
-    searchResults.map(item => (
-      <Tile
-        key={item.id}
-        title={item.name}
-        image={item.image}
-      />
-    ))
-  )}
-</div>
-
+        position={item.position}
+        />
+      ))}
     </div>
+  </div>
   );
 }
 
