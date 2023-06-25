@@ -71,3 +71,8 @@
     transform: rotate(360deg);
   }
 }
+
+
+.font-face-rodin {
+  font-family: "Rodin";
+}

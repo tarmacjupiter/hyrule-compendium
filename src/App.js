@@ -51,19 +51,12 @@ const App = () => {
 
         setAllData(combinedData)
 
-        const orderedData = allData.map((item, index) => ({
-          ...item,
-          position: index
-        }))
-
-        setAllData(orderedData)
-
         setError(null)
       })
       .catch(error => {
         setError(error.message)
       })
-  }, [setAllData, equipment, foodData, materials, monsters, nonFoodData, treasure, allData])
+  }, [foodData, nonFoodData, equipment, materials, monsters, treasure, allData])
 
   // Creating Searching Function
   useEffect(() => {

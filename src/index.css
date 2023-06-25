@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Rodin";
+  src: local("Rodin"),
+    url("./fonts/Rodin/fotrodin.otf") format("truetype");
+  font-weight: lighter;
+}
