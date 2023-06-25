@@ -1,10 +1,19 @@
-import React, { useEffect, useState, useTransition } from 'react'
+import React, { useEffect, useState } from 'react'
 import Tile from './Tile';
 import './App.css';
 import "./Tile.css"
 
 const App = () => {
-  const [allData, setAllData] = useState([])
+  // All API Data and Categories
+  const [foodData, setAllFoodData] = useState([])
+  const [nonFoodData, setAllNonFoodData] = useState([])
+  const [equipment, setEquipment] = useState([])
+  const [materials, setMaterials] = useState([])
+  const [monsters, setMonsters] = useState([])
+  const [treasure, setTreasure] = useState([])
+
+
+  // State for error handling
   const [error, setError] = useState(null)
 
   // Searching State
@@ -21,7 +30,12 @@ const App = () => {
         return response.json()
       })
       .then(data => {
-        setAllData(data["data"]["creatures"]["food"])
+        setAllFoodData(data["data"]["creatures"]["food"])
+        setAllNonFoodData(data["data"]["creatures"]["non_food"])
+        setEquipment(data["data"]["equipment"])
+        setMaterials(data["data"]["materials"])
+        setMonsters(data["data"]["monsters"])
+        setTreasure(data["data"]["treasure"])
         setError(null)
       })
       .catch(error => {
@@ -29,17 +43,18 @@ const App = () => {
       })
   }, [])
 
+
   // Creating Searching Function
   useEffect(() => {
-    if(allData.length === 0) {
+    if(foodData.length === 0) {
       setSearchResults([])
       return;
     }
-    const results = allData.filter(item => 
+    const results = foodData.filter(item => 
       item["name"].toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results)
-  }, [searchTerm, allData])
+  }, [searchTerm, foodData])
 
   const handleSearch = event => {
     setSearchTerm(event.target.value);
@@ -59,7 +74,7 @@ const App = () => {
       </div>
     <div className='tile-container'>
       {searchResults.length === 0 ? (
-        allData.map(item => (
+        foodData.map(item => (
         <Tile
         key={item.id}
         title={item.name}
