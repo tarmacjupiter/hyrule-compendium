@@ -1,11 +1,15 @@
 import React from 'react'
 
 
-const Tile = ({title, description}) => {
+const Tile = ({title, image}) => {
+    const tileStyle = {
+        backgroundImage: `url(${image})`
+    }
+
+
     return (
-        <div className="tile">
+        <div className="tile" style={tileStyle}>
             <h6>{title}</h6>
-            <p>{description}</p>
         </div>
     )
 }
