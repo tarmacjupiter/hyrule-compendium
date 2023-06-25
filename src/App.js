@@ -7,6 +7,11 @@ const App = () => {
   const [allData, setAllData] = useState([])
   const [error, setError] = useState(null)
 
+  // Searching State
+  const [searchTerm, setSearchTerm] = useState("")
+  const [searchResults, setSearchResults] = useState([])
+
+  // Fetching API data from Zelda API
   useEffect(() => {
     fetch("https://botw-compendium.herokuapp.com/api/v2/all")
       .then(response => {
@@ -24,19 +29,54 @@ const App = () => {
       })
   }, [])
 
+  // Creating Searching Function
+  useEffect(() => {
+    if(allData.length === 0) {
+      setSearchResults([])
+      return;
+    }
+    const results = allData.filter(item => 
+      item["name"].toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results)
+  }, [searchTerm, allData])
+
+  const handleSearch = event => {
+    setSearchTerm(event.target.value);
+  }
+
 
   return (
     <div className="background-image">
       {error && <p>Error: {error}</p>}
-      <div className='tile-container'>
-        {allData.map(item => {
-          return <Tile 
-            key={item["id"]}
-            title={item["name"]}
-            image={item["image"]}
-          />
-        })}
+      <div>
+        <input 
+          type="text"
+          placeholder='Search Hyrule!'
+          value={searchTerm}
+          onChange={handleSearch}
+        />
       </div>
+    <div className='tile-container'>
+      {searchResults.length === 0 ? (
+        allData.map(item => (
+        <Tile
+        key={item.id}
+        title={item.name}
+        image={item.image}
+      />
+    ))
+  ) : (
+    searchResults.map(item => (
+      <Tile
+        key={item.id}
+        title={item.name}
+        image={item.image}
+      />
+    ))
+  )}
+</div>
+
     </div>
   );
 }
