@@ -58,6 +58,19 @@ const App = () => {
       })
   }, [foodData, nonFoodData, equipment, materials, monsters, treasure, allData])
 
+  useEffect(() => {
+    if(allData.length === 0) {
+      return;
+    }
+
+    const orderedData = allData.map((item, index) => ({
+      ...item,
+      position: index
+    }))
+
+    setAllData(orderedData)
+  }, [allData])
+
   // Creating Searching Function
   useEffect(() => {
     if(allData.length === 0) {
@@ -76,7 +89,8 @@ const App = () => {
 
   return (
     <div className="background-image">
-      {error && <p>Error: {error}</p>}
+      {/* may need to include error message here */}
+      {error && ""} 
       <div className='search-style'>
         <input 
           className='input-style'
