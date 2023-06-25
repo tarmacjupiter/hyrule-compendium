@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.background-image {
+  background-image: url("https://i.imgur.com/FunntrS.png");
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  ::-webkit-scrollbar {display: none};
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
