@@ -12,6 +12,8 @@ const App = () => {
   const [monsters, setMonsters] = useState([])
   const [treasure, setTreasure] = useState([])
 
+  // Complete set of all Hyrule Data
+  const [allData, setAllData] = useState([])
 
   // State for error handling
   const [error, setError] = useState(null)
@@ -36,30 +38,32 @@ const App = () => {
         setMaterials(data["data"]["materials"])
         setMonsters(data["data"]["monsters"])
         setTreasure(data["data"]["treasure"])
+
+        // Efficiently appending all arrays
+        setAllData([].concat.apply([], [foodData, nonFoodData, equipment, materials, monsters, treasure]))
+
         setError(null)
       })
       .catch(error => {
         setError(error.message)
       })
-  }, [])
-
+  }, [setAllData, equipment, foodData, materials, monsters, nonFoodData, treasure])
 
   // Creating Searching Function
   useEffect(() => {
-    if(foodData.length === 0) {
+    if(allData.length === 0) {
       setSearchResults([])
       return;
     }
-    const results = foodData.filter(item => 
+    const results = allData.filter(item => 
       item["name"].toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results)
-  }, [searchTerm, foodData])
+  }, [searchTerm, allData, allData.length])
 
   const handleSearch = event => {
     setSearchTerm(event.target.value);
   }
-
 
   return (
     <div className="background-image">
@@ -74,7 +78,7 @@ const App = () => {
       </div>
     <div className='tile-container'>
       {searchResults.length === 0 ? (
-        foodData.map(item => (
+        allData.map(item => (
         <Tile
         key={item.id}
         title={item.name}
