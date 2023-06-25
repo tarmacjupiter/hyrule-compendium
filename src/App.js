@@ -68,8 +68,9 @@ const App = () => {
   return (
     <div className="background-image">
       {error && <p>Error: {error}</p>}
-      <div>
+      <div className='search-style'>
         <input 
+          className='input-style'
           type="text"
           placeholder='Search Hyrule!'
           value={searchTerm}
