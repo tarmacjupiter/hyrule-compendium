@@ -1,6 +1,8 @@
+import React, { useEffect, useState } from 'react'
+import Tile from './Tile';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="background-image">
     </div>
