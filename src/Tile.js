@@ -6,10 +6,9 @@ const Tile = ({id, title, image, position}) => {
         order: position
     }
     return (
-        <div key={id} className="tile" style={tileStyle}>
-            <h6 style={{ color: "#000000", fontFamily: "Rodin"}}>
-                <em>{title.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())}</em>
-            </h6> 
+        <div>
+            <h6 style={{ color: "white", textAlign: "center" }}><em>{title.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())}</em></h6>
+            <div key={id} className="tile" style={tileStyle}></div>
         </div>
     )
 }

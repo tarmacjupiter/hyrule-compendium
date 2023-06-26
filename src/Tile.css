@@ -10,12 +10,13 @@
 .tile {
     position: relative;
     z-index: 1;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border: 1px solid white;
-    margin: 10px;
     padding: 10px;
-    background-color: red;
+    margin: 10px;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/The_Legend_of_Zelda_-_Sheikah_Symbol.svg/635px-The_Legend_of_Zelda_-_Sheikah_Symbol.svg.png");
+    background-color: #423F38;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
