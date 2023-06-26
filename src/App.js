@@ -56,7 +56,7 @@ const App = () => {
       .catch(error => {
         setError(error.message)
       })
-  }, [foodData, nonFoodData, equipment, materials, monsters, treasure, allData])
+  }, [])
 
   useEffect(() => {
     if(allData.length === 0) {
@@ -108,6 +108,8 @@ const App = () => {
         title={item.name}
         image={item.image}
         position={item.position}
+        description={item.description}
+        common_locations={item.common_locations}
         />
       ))}
     </div>

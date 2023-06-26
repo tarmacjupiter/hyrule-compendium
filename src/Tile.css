@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 7.3vw;
-    max-height: 400px;
+    max-height: 300px;
     overflow: auto;
     position: relative;
 }
@@ -29,4 +29,28 @@
 
 .tile:hover {
     transform: scale(1.1);
+}
+
+.font-top {
+    text-align: center;
+}
+
+.font-bot {
+    text-align: center;
+    font-weight: normal;
+    color: #64BDFF;
+}
+
+.btn-modal {
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+.tile-top-font {
+    color: #64BDFF;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
 }
