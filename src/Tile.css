@@ -16,7 +16,7 @@
     padding: 10px;
     margin: 10px;
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/The_Legend_of_Zelda_-_Sheikah_Symbol.svg/635px-The_Legend_of_Zelda_-_Sheikah_Symbol.svg.png");
-    background-color: #423F38;
+    background-color: white;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -33,12 +33,14 @@
 
 .font-top {
     text-align: center;
+    color: white;
 }
 
 .font-bot {
     text-align: center;
     font-weight: normal;
     color: #64BDFF;
+
 }
 
 .btn-modal {
